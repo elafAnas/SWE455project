@@ -92,3 +92,7 @@ button {
 .status.late {
   color: orange;
 }
+
+body {
+  background: red;
+}
