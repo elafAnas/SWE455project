@@ -16,7 +16,10 @@ OVERDUE_SERVICE_URL = os.environ.get("OVERDUE_SERVICE_URL")
 
 @app.route("/", methods=["GET"])
 def health_check():
-    return {"message": "Assignment API is running with Firestore"}, 200
+    return {
+        "message": "Assignment API is running with Firestore",
+        "version": "CI/CD test version 2"
+    }, 200
 
 
 @app.route("/assignments", methods=["POST"])
