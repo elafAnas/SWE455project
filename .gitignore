@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+.venv/
+
+# Secrets (IMPORTANT)
+key.json
+github-actions-key.json
+.env
+
+# OS
+.DS_Store
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# VS Code
+.vscode/

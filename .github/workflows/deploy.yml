@@ -1,0 +1,56 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: assignment-tracker-495407
+  REGION: us-central1
+  REPO: student-tracker-repo
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_KEY }}'
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker $REGION-docker.pkg.dev
+
+      - name: Build & Push Assignment API
+        run: |
+          docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/$REPO/assignment-api ./assignment-api
+          docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPO/assignment-api
+
+      - name: Build & Push Overdue Service
+        run: |
+          docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/$REPO/overdue-service ./overdue-service
+          docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPO/overdue-service
+
+      - name: Deploy Assignment API
+        run: |
+          gcloud run deploy assignment-api \
+            --image $REGION-docker.pkg.dev/$PROJECT_ID/$REPO/assignment-api \
+            --region $REGION \
+            --platform managed \
+            --allow-unauthenticated
+
+      - name: Deploy Overdue Service
+        run: |
+          gcloud run deploy overdue-service \
+            --image $REGION-docker.pkg.dev/$PROJECT_ID/$REPO/overdue-service \
+            --region $REGION \
+            --platform managed \
+            --allow-unauthenticated

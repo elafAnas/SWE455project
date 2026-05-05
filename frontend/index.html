@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Assignment Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Student Assignment Tracker</h1>
+      <p>Track your course assignments and due dates.</p>
+    </header>
+
+    <section class="card">
+      <h2>Add Assignment</h2>
+
+      <form id="assignmentForm">
+        <input type="text" id="course" placeholder="Course name" required />
+        <input type="text" id="title" placeholder="Assignment title" required />
+        <input type="date" id="due_date" lang="en" required />
+        <button type="submit">Add Assignment</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Assignments</h2>
+
+      <!-- زر تشغيل السيرفس الثاني -->
+      <button onclick="runOverdueCheck()">
+        Check Overdue
+      </button>
+
+      <div id="assignmentsList" class="assignments-list"></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

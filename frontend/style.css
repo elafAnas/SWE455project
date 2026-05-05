@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+.assignment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  margin-top: 10px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.assignment-info h3 {
+  margin: 0;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.completed {
+  color: green;
+}
+
+.status.overdue {
+  color: red;
+}
+
+.status.pending {
+  color: gray;
+}
+
+/* زر Done */
+.done-btn.completed {
+  background: #ccc;
+  color: #555;
+  cursor: not-allowed;
+}
+
+
+.delete-btn {
+  background: #b00020;
+}
+.status.late {
+  color: orange;
+}
